@@ -40,30 +40,30 @@
         <p id="wynik"></p>
 
         <script>
-            function ObliczKoszt() {
-                const szerokosc = parseFloat(document.getElementById("szerokosc").value);
-                const dlugosc = parseFloat(document.getElementById("dlugosc").value);
-                const typPanelu = document.querySelector('input[name="typPanelu"]:checked');
-                const wynik = document.getElementById("wynik");
+             function ObliczKoszt() {
+        var szerokosc = parseFloat(document.getElementById("szerokosc").value);
+        var dlugosc = parseFloat(document.getElementById("dlugosc").value);
+        var typPanelu = document.querySelector('input[name="typPanelu"]:checked');
+        var wynik = document.getElementById("wynik");
 
-                if (isNaN(szerokosc) || isNaN(dlugosc) || szerokosc <= 0 || dlugosc <= 0 || !typPanelu) {
-                    wynik.innerText = "Wprowadź poprawne dane.";
-                    return;
-                }
+        if (isNaN(szerokosc) || isNaN(dlugosc) || szerokosc <= 0 || dlugosc <= 0 || !typPanelu) {
+            wynik.innerText = "Wprowadź poprawne dane.";
+            return;
+        }
 
-                const cenyPaneli = {
-                    laminowany: 12,
-                    winylowy: 14,
-                    deska: 18
-                };
+        var cenyPaneli = {
+            laminowany: 12,
+            winylowy: 14,
+            deska: 18
+        };
 
-                const nazwaPanelu = typPanelu.value;
-                const kosztZaM2 = cenyPaneli[nazwaPanelu];
+        var nazwaPanelu = typPanelu.value;
+        var kosztZaM2 = cenyPaneli[nazwaPanelu];
 
-                const powierzchnia = szerokosc * dlugosc;
-                const kosztMontazu = powierzchnia * kosztZaM2;
+        var powierzchnia = szerokosc * dlugosc;
+        var kosztMontazu = powierzchnia * kosztZaM2;
 
-                wynik.innerText = "Pole powierzchni pomieszczenia: " + powierzchnia + " m²  koszt montażu: " + kosztMontazu + " zł.";
+        wynik.innerText = "Pole powierzchni pomieszczenia: " + powierzchnia + " m²  koszt montażu: " + kosztMontazu + " zł.";
             }
         </script>
     </main>
