@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Montaż paneli podłogowych</title>
+</head>
+<body>
+    <header>
+        <img src="montaz_paneli.png" alt="firma usługowa">
+    </header>
+
+    <nav>
+        <a href="index.html">Strona Główna</a>
+        <a href="oferta.html">Oferta</a>
+        <a href="koszty.html">Kalkulator kosztów</a>
+    </nav>
+
+    <main>
+        <h1>Kalkulator kosztów montażu</h1>
+
+        <form onsubmit="ObliczKoszt(); return false;">
+            <label for="szerokosc">Szerokość pomieszczenia [m]:</label>
+            <input type="number" id="szerokosc" step="0.01">
+
+            <label for="dlugosc">Długość pomieszczenia [m]:</label>
+            <input type="number" id="dlugosc" step="0.01">
+
+            <p>Typ panelu:</p>
+            <label><input type="radio" name="typPanelu" value="laminowany"> Panele laminowane</label>
+            <br>
+            <label><input type="radio" name="typPanelu" value="winylowy"> Panele winylowe</label>
+            <br>
+            <label><input type="radio" name="typPanelu" value="deska"> Deska podłogowa</label>
+            <br>
+            <button type="submit">Oblicz</button>
+        </form>
+
+        <p id="wynik"></p>
+
+        <script>
+             function ObliczKoszt() {
+        var szerokosc = parseFloat(document.getElementById("szerokosc").value);
+        var dlugosc = parseFloat(document.getElementById("dlugosc").value);
+        var typPanelu = document.querySelector('input[name="typPanelu"]:checked');
+        var wynik = document.getElementById("wynik");
+
+        if (isNaN(szerokosc) || isNaN(dlugosc) || szerokosc <= 0 || dlugosc <= 0 || !typPanelu) {
+            wynik.innerText = "Wprowadź poprawne dane.";
+            return;
+        }
+
+        var cenyPaneli = {
+            laminowany: 12,
+            winylowy: 14,
+            deska: 18
+        };
+
+        var nazwaPanelu = typPanelu.value;
+        var kosztZaM2 = cenyPaneli[nazwaPanelu];
+
+        var powierzchnia = szerokosc * dlugosc;
+        var kosztMontazu = powierzchnia * kosztZaM2;
+
+        wynik.innerText = "Pole powierzchni pomieszczenia: " + powierzchnia + " m²  koszt montażu: " + kosztMontazu + " zł.";
+            }
+        </script>
+    </main>
+
+    <footer>
+        <h5>Autor strony: Viktoriia Horecha</h5>
+    </footer>
+</body>
+</html>
